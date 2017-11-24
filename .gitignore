@@ -12,3 +12,4 @@ target/
 .checkstyle
 dependency-reduced-pom.xml
 */bin
+.DS_STORE
