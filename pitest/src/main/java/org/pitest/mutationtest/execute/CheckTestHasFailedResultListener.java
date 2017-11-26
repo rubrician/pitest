@@ -22,12 +22,15 @@ import org.pitest.testapi.TestResult;
 
 public class CheckTestHasFailedResultListener implements TestListener {
 
-  private Option<Description> lastFailingTest = Option.none();
-  private int                 testsRun        = 0;
+  private Option<Description> lastFailingTest          = Option.none();
+  private Option<Throwable>   lastFailingTestThrowable = Option.none();
+
+  private int                 testsRun                 = 0;
 
   @Override
   public void onTestFailure(final TestResult tr) {
     this.lastFailingTest = Option.some(tr.getDescription());
+    this.lastFailingTestThrowable = Option.some(tr.getThrowable());
   }
 
   @Override
@@ -55,6 +58,10 @@ public class CheckTestHasFailedResultListener implements TestListener {
 
   public Option<Description> lastFailingTest() {
     return this.lastFailingTest;
+  }
+
+  public Option<Throwable> lastFailingTestThrowable() {
+    return lastFailingTestThrowable;
   }
 
   public int getNumberOfTestsRun() {

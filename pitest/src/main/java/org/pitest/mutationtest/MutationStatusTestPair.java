@@ -21,6 +21,7 @@ public final class MutationStatusTestPair {
   private final int             numberOfTestsRun;
   private final DetectionStatus status;
   private final Option<String>  killingTest;
+  private final Option<String>  killingTestStacktrace;
 
   public MutationStatusTestPair(final int numberOfTestsRun,
       final DetectionStatus status) {
@@ -29,9 +30,15 @@ public final class MutationStatusTestPair {
 
   public MutationStatusTestPair(final int numberOfTestsRun,
       final DetectionStatus status, final String killingTest) {
+    this(numberOfTestsRun, status, killingTest, null);
+  }
+
+  public MutationStatusTestPair(final int numberOfTestsRun,
+                                final DetectionStatus status, final String killingTest, final String killingTestStackTrace) {
     this.status = status;
     this.killingTest = Option.some(killingTest);
     this.numberOfTestsRun = numberOfTestsRun;
+    this.killingTestStacktrace = Option.some(killingTestStackTrace);
   }
 
   public DetectionStatus getStatus() {
@@ -42,9 +49,14 @@ public final class MutationStatusTestPair {
     return this.killingTest;
   }
 
+  public Option<String> getKillingTestStacktrace() {
+    return killingTestStacktrace;
+  }
+
   public int getNumberOfTestsRun() {
     return this.numberOfTestsRun;
   }
+
 
   @Override
   public String toString() {
@@ -53,7 +65,6 @@ public final class MutationStatusTestPair {
     } else {
       return this.status.name() + " by " + this.killingTest.value();
     }
-
   }
 
   @Override

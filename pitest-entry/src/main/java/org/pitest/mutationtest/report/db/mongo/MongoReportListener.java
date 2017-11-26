@@ -92,6 +92,7 @@ public class MongoReportListener implements MutationResultListener {
             mdoc.append("status", mutation.getStatus().isDetected() ? "detected" : "undetected");
             mdoc.append("statusDetail", mutation.getStatusDescription());
             mdoc.append("killingTest", mutation.getKillingTestDescription());
+            mdoc.append("stacktrace", mutation.getKillingTestStacktrace().hasSome() ? mutation.getKillingTestStacktrace().value() : "none");
             mdoc.append("testRuns", mutation.getNumberOfTestsRun());
             mutations.add(mdoc);
         }

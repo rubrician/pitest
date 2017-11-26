@@ -56,6 +56,10 @@ public final class MutationResult {
     return getKillingTest().getOrElse("none");
   }
 
+  public Option<String> getKillingTestStacktrace() {
+    return this.status.getKillingTestStacktrace();
+  }
+
   @Override
   public int hashCode() {
     final int prime = 31;

@@ -17,6 +17,8 @@ package org.pitest.mutationtest.execute;
 import static org.pitest.util.Unchecked.translateCheckedException;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -200,15 +202,17 @@ public class MutationTestWorker {
     } catch (final Exception ex) {
       throw translateCheckedException(ex);
     }
-
   }
 
   private MutationStatusTestPair createStatusTestPair(
       final CheckTestHasFailedResultListener listener) {
     if (listener.lastFailingTest().hasSome()) {
+      // TODO: use configuration to get stacktrace or not
+      /*return new MutationStatusTestPair(listener.getNumberOfTestsRun(),
+              listener.status(), listener.lastFailingTest().value().getQualifiedName());*/
       return new MutationStatusTestPair(listener.getNumberOfTestsRun(),
-          listener.status(), listener.lastFailingTest().value()
-              .getQualifiedName());
+              listener.status(), listener.lastFailingTest().value().getQualifiedName(),
+              getStackTrace(listener.lastFailingTestThrowable().value()));
     } else {
       return new MutationStatusTestPair(listener.getNumberOfTestsRun(),
           listener.status());
@@ -219,4 +223,10 @@ public class MutationTestWorker {
     return Collections.<TestUnit> singletonList(new MultipleTestGroup(tests));
   }
 
+  public static String getStackTrace(final Throwable throwable) {
+    final StringWriter sw = new StringWriter();
+    final PrintWriter pw = new PrintWriter(sw, true);
+    throwable.printStackTrace(pw);
+    return sw.getBuffer().toString();
+  }
 }
