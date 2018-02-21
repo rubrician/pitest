@@ -1,0 +1,76 @@
+// class version 51.0 (51)
+// access flags 0x21
+public class com/example/staticinitializers/NonPrivateMethodsCalledFromInitializerOnly {
+
+  // compiled from: NonPrivateMethodsCalledFromInitializerOnly.java
+
+  // access flags 0x1
+  public <init>()V
+   L0
+    LINENUMBER 3 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+    RETURN
+   L1
+    LOCALVARIABLE this Lcom/example/staticinitializers/NonPrivateMethodsCalledFromInitializerOnly; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x8
+  static mutateDefault()V
+   L0
+    LINENUMBER 13 L0
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    LDC "mutate me"
+    POP
+    POP
+   L1
+    LINENUMBER 14 L1
+    RETURN
+    MAXSTACK = 2
+    MAXLOCALS = 0
+
+  // access flags 0xC
+  protected static mutateProtected()V
+   L0
+    LINENUMBER 17 L0
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    LDC "mutate me"
+    INVOKEVIRTUAL java/io/PrintStream.println (Ljava/lang/String;)V
+   L1
+    LINENUMBER 18 L1
+    RETURN
+    MAXSTACK = 2
+    MAXLOCALS = 0
+
+  // access flags 0x9
+  public static mutatePublic()V
+   L0
+    LINENUMBER 21 L0
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    LDC "mutate me"
+    INVOKEVIRTUAL java/io/PrintStream.println (Ljava/lang/String;)V
+   L1
+    LINENUMBER 22 L1
+    RETURN
+    MAXSTACK = 2
+    MAXLOCALS = 0
+
+  // access flags 0x8
+  static <clinit>()V
+   L0
+    LINENUMBER 6 L0
+    INVOKESTATIC com/example/staticinitializers/NonPrivateMethodsCalledFromInitializerOnly.mutateDefault ()V
+   L1
+    LINENUMBER 7 L1
+    INVOKESTATIC com/example/staticinitializers/NonPrivateMethodsCalledFromInitializerOnly.mutateProtected ()V
+   L2
+    LINENUMBER 8 L2
+    INVOKESTATIC com/example/staticinitializers/NonPrivateMethodsCalledFromInitializerOnly.mutatePublic ()V
+   L3
+    LINENUMBER 9 L3
+    RETURN
+    MAXSTACK = 0
+    MAXLOCALS = 0
+}
+

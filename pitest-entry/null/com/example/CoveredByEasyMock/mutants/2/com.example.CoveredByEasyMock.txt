@@ -1,0 +1,51 @@
+// class version 51.0 (51)
+// access flags 0x21
+public class com/example/CoveredByEasyMock {
+
+  // compiled from: CoveredByEasyMock.java
+  // access flags 0x609
+  public static abstract INNERCLASS com/example/CoveredByEasyMock$AnInterface com/example/CoveredByEasyMock AnInterface
+
+  // access flags 0x1
+  public <init>()V
+   L0
+    LINENUMBER 17 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+    RETURN
+   L1
+    LOCALVARIABLE this Lcom/example/CoveredByEasyMock; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public doStuff(Lcom/example/CoveredByEasyMock$AnInterface;)V
+   L0
+    LINENUMBER 24 L0
+    ICONST_0
+    ISTORE 2
+   L1
+   FRAME FULL [com/example/CoveredByEasyMock com/example/CoveredByEasyMock$AnInterface I] []
+    ILOAD 2
+    ICONST_2
+    IF_ICMPEQ L2
+   L3
+    LINENUMBER 25 L3
+    ALOAD 1
+    INVOKEINTERFACE com/example/CoveredByEasyMock$AnInterface.callMe ()V
+   L4
+    LINENUMBER 24 L4
+    IINC 2 -1
+    GOTO L1
+   L2
+    LINENUMBER 28 L2
+   FRAME FULL [com/example/CoveredByEasyMock com/example/CoveredByEasyMock$AnInterface I] []
+    RETURN
+   L5
+    LOCALVARIABLE i I L1 L2 2
+    LOCALVARIABLE this Lcom/example/CoveredByEasyMock; L0 L5 0
+    LOCALVARIABLE ai Lcom/example/CoveredByEasyMock$AnInterface; L0 L5 1
+    MAXSTACK = 2
+    MAXLOCALS = 3
+}
+

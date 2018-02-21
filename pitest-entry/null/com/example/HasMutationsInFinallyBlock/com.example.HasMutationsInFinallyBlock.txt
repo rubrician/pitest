@@ -1,0 +1,51 @@
+// class version 51.0 (51)
+// access flags 0x21
+public class com/example/HasMutationsInFinallyBlock {
+
+  // compiled from: HasMutationsInFinallyBlock.java
+
+  // access flags 0x1
+  public <init>()V
+   L0
+    LINENUMBER 3 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+    RETURN
+   L1
+    LOCALVARIABLE this Lcom/example/HasMutationsInFinallyBlock; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public foo(I)I
+    TRYCATCHBLOCK L0 L1 L2 null
+   L0
+    LINENUMBER 7 L0
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    LDC "don't optimise me away"
+    INVOKEVIRTUAL java/io/PrintStream.println (Ljava/lang/String;)V
+   L1
+    LINENUMBER 9 L1
+    IINC 1 1
+   L3
+    LINENUMBER 10 L3
+    GOTO L4
+   L2
+    LINENUMBER 9 L2
+   FRAME FULL [com/example/HasMutationsInFinallyBlock I] [java/lang/Throwable]
+    ASTORE 2
+    IINC 1 1
+    ALOAD 2
+    ATHROW
+   L4
+    LINENUMBER 11 L4
+   FRAME FULL [com/example/HasMutationsInFinallyBlock I] []
+    ILOAD 1
+    IRETURN
+   L5
+    LOCALVARIABLE this Lcom/example/HasMutationsInFinallyBlock; L0 L5 0
+    LOCALVARIABLE i I L0 L5 1
+    MAXSTACK = 2
+    MAXLOCALS = 3
+}
+

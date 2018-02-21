@@ -1,0 +1,45 @@
+// class version 51.0 (51)
+// access flags 0x20
+class com/example/MockitoCallFoo {
+
+  // compiled from: MockitoRunnerTest.java
+
+  // access flags 0x10
+  final Lcom/example/MockitoFoo; foo
+
+  // access flags 0x1
+  public <init>(Lcom/example/MockitoFoo;)V
+   L0
+    LINENUMBER 43 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+   L1
+    LINENUMBER 44 L1
+    ALOAD 0
+    ALOAD 1
+    PUTFIELD com/example/MockitoCallFoo.foo : Lcom/example/MockitoFoo;
+   L2
+    LINENUMBER 45 L2
+    RETURN
+   L3
+    LOCALVARIABLE this Lcom/example/MockitoCallFoo; L0 L3 0
+    LOCALVARIABLE foo Lcom/example/MockitoFoo; L0 L3 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  public call()V
+   L0
+    LINENUMBER 48 L0
+    ALOAD 0
+    GETFIELD com/example/MockitoCallFoo.foo : Lcom/example/MockitoFoo;
+    POP
+   L1
+    LINENUMBER 49 L1
+    RETURN
+   L2
+    LOCALVARIABLE this Lcom/example/MockitoCallFoo; L0 L2 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+}
+

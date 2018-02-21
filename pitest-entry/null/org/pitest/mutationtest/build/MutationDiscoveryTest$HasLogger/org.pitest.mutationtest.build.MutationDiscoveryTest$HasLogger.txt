@@ -1,0 +1,59 @@
+// class version 51.0 (51)
+// access flags 0x20
+class org/pitest/mutationtest/build/MutationDiscoveryTest$HasLogger {
+
+  // compiled from: MutationDiscoveryTest.java
+  // access flags 0xA
+  private static INNERCLASS org/pitest/mutationtest/build/MutationDiscoveryTest$HasLogger org/pitest/mutationtest/build/MutationDiscoveryTest HasLogger
+
+  // access flags 0xA
+  private static Ljava/util/logging/Logger; log
+
+  // access flags 0x2
+  private <init>()V
+   L0
+    LINENUMBER 201 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+    RETURN
+   L1
+    LOCALVARIABLE this Lorg/pitest/mutationtest/build/MutationDiscoveryTest$HasLogger; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public call(I)V
+   L0
+    LINENUMBER 206 L0
+    GETSTATIC org/pitest/mutationtest/build/MutationDiscoveryTest$HasLogger.log : Ljava/util/logging/Logger;
+    NEW java/lang/StringBuilder
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    LDC "foo "
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    ILOAD 1
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;
+    INVOKEVIRTUAL java/util/logging/Logger.info (Ljava/lang/String;)V
+   L1
+    LINENUMBER 207 L1
+    RETURN
+   L2
+    LOCALVARIABLE this Lorg/pitest/mutationtest/build/MutationDiscoveryTest$HasLogger; L0 L2 0
+    LOCALVARIABLE i I L0 L2 1
+    MAXSTACK = 3
+    MAXLOCALS = 2
+
+  // access flags 0x8
+  static <clinit>()V
+   L0
+    LINENUMBER 202 L0
+    LDC Lorg/pitest/mutationtest/build/MutationDiscoveryTest$HasLogger;.class
+    INVOKEVIRTUAL java/lang/Class.getName ()Ljava/lang/String;
+    INVOKESTATIC java/util/logging/Logger.getLogger (Ljava/lang/String;)Ljava/util/logging/Logger;
+    PUTSTATIC org/pitest/mutationtest/build/MutationDiscoveryTest$HasLogger.log : Ljava/util/logging/Logger;
+    RETURN
+    MAXSTACK = 1
+    MAXLOCALS = 0
+}
+

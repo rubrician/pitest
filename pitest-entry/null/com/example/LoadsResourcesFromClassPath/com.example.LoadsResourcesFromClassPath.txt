@@ -1,0 +1,51 @@
+// class version 50.0 (50)
+// access flags 0x21
+public class com/example/LoadsResourcesFromClassPath {
+
+  // compiled from: LoadsResourcesFromClassPath.java
+
+  // access flags 0x1
+  public <init>()V
+   L0
+    LINENUMBER 7 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+    RETURN
+   L1
+    LOCALVARIABLE this Lcom/example/LoadsResourcesFromClassPath; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x9
+  public static loadResource()Z
+   L0
+    LINENUMBER 10 L0
+    INVOKESTATIC org/pitest/util/IsolationUtils.getContextClassLoader ()Ljava/lang/ClassLoader;
+    LDC "resource folder with spaces/text in folder with spaces.txt"
+   L1
+    LINENUMBER 11 L1
+    INVOKEVIRTUAL java/lang/ClassLoader.getResourceAsStream (Ljava/lang/String;)Ljava/io/InputStream;
+    ASTORE 0
+   L2
+    LINENUMBER 13 L2
+    ALOAD 0
+    IFNULL L3
+    ICONST_1
+    GOTO L4
+   L3
+   FRAME FULL [java/io/InputStream] []
+    ICONST_0
+   L4
+   FRAME FULL [java/io/InputStream] [I]
+    ISTORE 1
+   L5
+    LINENUMBER 15 L5
+    ILOAD 1
+    IRETURN
+   L6
+    LOCALVARIABLE stream Ljava/io/InputStream; L2 L6 0
+    LOCALVARIABLE result Z L5 L6 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+}
+

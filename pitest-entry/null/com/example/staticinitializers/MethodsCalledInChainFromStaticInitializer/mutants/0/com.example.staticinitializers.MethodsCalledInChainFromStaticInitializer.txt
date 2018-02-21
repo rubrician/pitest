@@ -1,0 +1,60 @@
+// class version 51.0 (51)
+// access flags 0x21
+public class com/example/staticinitializers/MethodsCalledInChainFromStaticInitializer {
+
+  // compiled from: MethodsCalledInChainFromStaticInitializer.java
+
+  // access flags 0x1
+  public <init>()V
+   L0
+    LINENUMBER 3 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+    RETURN
+   L1
+    LOCALVARIABLE this Lcom/example/staticinitializers/MethodsCalledInChainFromStaticInitializer; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0xA
+  private static a()V
+   L0
+    LINENUMBER 10 L0
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    LDC "don't mutate"
+    INVOKEVIRTUAL java/io/PrintStream.println (Ljava/lang/String;)V
+   L1
+    LINENUMBER 11 L1
+    INVOKESTATIC com/example/staticinitializers/MethodsCalledInChainFromStaticInitializer.b ()V
+   L2
+    LINENUMBER 12 L2
+    RETURN
+    MAXSTACK = 2
+    MAXLOCALS = 0
+
+  // access flags 0xA
+  private static b()V
+   L0
+    LINENUMBER 15 L0
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    LDC "don't mutate"
+    POP
+    POP
+   L1
+    LINENUMBER 16 L1
+    RETURN
+    MAXSTACK = 2
+    MAXLOCALS = 0
+
+  // access flags 0x8
+  static <clinit>()V
+   L0
+    LINENUMBER 6 L0
+    INVOKESTATIC com/example/staticinitializers/MethodsCalledInChainFromStaticInitializer.a ()V
+   L1
+    LINENUMBER 7 L1
+    RETURN
+    MAXSTACK = 0
+    MAXLOCALS = 0
+}
+

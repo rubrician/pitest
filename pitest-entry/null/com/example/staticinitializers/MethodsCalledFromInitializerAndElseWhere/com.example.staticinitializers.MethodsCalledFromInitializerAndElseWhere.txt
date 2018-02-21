@@ -1,0 +1,54 @@
+// class version 51.0 (51)
+// access flags 0x21
+public class com/example/staticinitializers/MethodsCalledFromInitializerAndElseWhere {
+
+  // compiled from: MethodsCalledFromInitializerAndElseWhere.java
+
+  // access flags 0x1
+  public <init>()V
+   L0
+    LINENUMBER 3 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+    RETURN
+   L1
+    LOCALVARIABLE this Lcom/example/staticinitializers/MethodsCalledFromInitializerAndElseWhere; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0xA
+  private static mutateMe()Z
+   L0
+    LINENUMBER 10 L0
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    LDC "don't mutate"
+    INVOKEVIRTUAL java/io/PrintStream.println (Ljava/lang/String;)V
+   L1
+    LINENUMBER 11 L1
+    ICONST_1
+    IRETURN
+    MAXSTACK = 2
+    MAXLOCALS = 0
+
+  // access flags 0x9
+  public static alsoCalls()Z
+   L0
+    LINENUMBER 15 L0
+    INVOKESTATIC com/example/staticinitializers/MethodsCalledFromInitializerAndElseWhere.mutateMe ()Z
+    IRETURN
+    MAXSTACK = 1
+    MAXLOCALS = 0
+
+  // access flags 0x8
+  static <clinit>()V
+   L0
+    LINENUMBER 6 L0
+    INVOKESTATIC com/example/staticinitializers/MethodsCalledFromInitializerAndElseWhere.mutateMe ()Z
+    POP
+   L1
+    LINENUMBER 7 L1
+    RETURN
+    MAXSTACK = 1
+    MAXLOCALS = 0
+}
+

@@ -1,0 +1,85 @@
+// class version 51.0 (51)
+// access flags 0x21
+public class org/pitest/mutationtest/build/MutationDiscoveryTest$AnnotatedToAvoidMethod {
+
+  // compiled from: MutationDiscoveryTest.java
+  // access flags 0x9
+  public static INNERCLASS org/pitest/mutationtest/build/MutationDiscoveryTest$AnnotatedToAvoidMethod org/pitest/mutationtest/build/MutationDiscoveryTest AnnotatedToAvoidMethod
+
+  // access flags 0x1
+  public <init>()V
+   L0
+    LINENUMBER 176 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+    RETURN
+   L1
+    LOCALVARIABLE this Lorg/pitest/mutationtest/build/MutationDiscoveryTest$AnnotatedToAvoidMethod; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public a()I
+   L0
+    LINENUMBER 178 L0
+    ICONST_1
+    IFEQ L1
+    ICONST_0
+    IRETURN
+   L1
+   FRAME FULL [org/pitest/mutationtest/build/MutationDiscoveryTest$AnnotatedToAvoidMethod] []
+    ICONST_1
+    IRETURN
+   L2
+    LOCALVARIABLE this Lorg/pitest/mutationtest/build/MutationDiscoveryTest$AnnotatedToAvoidMethod; L0 L2 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public b()I
+  @Lorg/pitest/mutationtest/engine/gregor/Generated;() // invisible
+   L0
+    LINENUMBER 183 L0
+    ICONST_1
+    IRETURN
+   L1
+    LOCALVARIABLE this Lorg/pitest/mutationtest/build/MutationDiscoveryTest$AnnotatedToAvoidMethod; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public c()I
+  @Lorg/pitest/mutationtest/engine/gregor/DoNotMutate;() // invisible
+   L0
+    LINENUMBER 188 L0
+    ICONST_1
+    IRETURN
+   L1
+    LOCALVARIABLE this Lorg/pitest/mutationtest/build/MutationDiscoveryTest$AnnotatedToAvoidMethod; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public d()I
+  @Lorg/pitest/mutationtest/engine/gregor/CoverageIgnore;() // invisible
+   L0
+    LINENUMBER 193 L0
+    ICONST_1
+    IRETURN
+   L1
+    LOCALVARIABLE this Lorg/pitest/mutationtest/build/MutationDiscoveryTest$AnnotatedToAvoidMethod; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public e()I
+   L0
+    LINENUMBER 197 L0
+    ICONST_1
+    IRETURN
+   L1
+    LOCALVARIABLE this Lorg/pitest/mutationtest/build/MutationDiscoveryTest$AnnotatedToAvoidMethod; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+}
+

@@ -1,0 +1,51 @@
+// class version 51.0 (51)
+// access flags 0x20
+class org/pitest/mutationtest/build/MutationDiscoveryTest$HasForLoop {
+
+  // compiled from: MutationDiscoveryTest.java
+  // access flags 0x8
+  static INNERCLASS org/pitest/mutationtest/build/MutationDiscoveryTest$HasForLoop org/pitest/mutationtest/build/MutationDiscoveryTest HasForLoop
+
+  // access flags 0x0
+  <init>()V
+   L0
+    LINENUMBER 247 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+    RETURN
+   L1
+    LOCALVARIABLE this Lorg/pitest/mutationtest/build/MutationDiscoveryTest$HasForLoop; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public foo()V
+   L0
+    LINENUMBER 249 L0
+    ICONST_0
+    ISTORE 1
+   L1
+   FRAME FULL [org/pitest/mutationtest/build/MutationDiscoveryTest$HasForLoop I] []
+    ILOAD 1
+    BIPUSH 10
+    IF_ICMPEQ L2
+   L3
+    LINENUMBER 250 L3
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    ILOAD 1
+    INVOKEVIRTUAL java/io/PrintStream.println (I)V
+   L4
+    LINENUMBER 249 L4
+    IINC 1 -1
+    GOTO L1
+   L2
+    LINENUMBER 252 L2
+   FRAME FULL [org/pitest/mutationtest/build/MutationDiscoveryTest$HasForLoop I] []
+    RETURN
+   L5
+    LOCALVARIABLE i I L1 L2 1
+    LOCALVARIABLE this Lorg/pitest/mutationtest/build/MutationDiscoveryTest$HasForLoop; L0 L5 0
+    MAXSTACK = 2
+    MAXLOCALS = 2
+}
+

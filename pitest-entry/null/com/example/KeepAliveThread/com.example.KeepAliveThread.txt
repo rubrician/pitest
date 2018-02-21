@@ -1,0 +1,56 @@
+// class version 51.0 (51)
+// access flags 0x21
+public class com/example/KeepAliveThread {
+
+  // compiled from: KeepAliveThread.java
+  // access flags 0x0
+  INNERCLASS com/example/KeepAliveThread$1 null null
+
+  // access flags 0x12
+  private final Ljava/util/concurrent/ExecutorService; ex
+
+  // access flags 0x1
+  public <init>()V
+   L0
+    LINENUMBER 32 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+   L1
+    LINENUMBER 33 L1
+    ICONST_5
+    ISTORE 1
+   L2
+    LINENUMBER 34 L2
+    ALOAD 0
+    ICONST_5
+    INVOKESTATIC java/util/concurrent/Executors.newFixedThreadPool (I)Ljava/util/concurrent/ExecutorService;
+    PUTFIELD com/example/KeepAliveThread.ex : Ljava/util/concurrent/ExecutorService;
+   L3
+    LINENUMBER 35 L3
+    RETURN
+   L4
+    LOCALVARIABLE this Lcom/example/KeepAliveThread; L0 L4 0
+    LOCALVARIABLE numberOfThreads I L2 L4 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x1
+  // signature ()Ljava/util/concurrent/Future<Ljava/lang/String;>;
+  // declaration: java.util.concurrent.Future<java.lang.String> run()
+  public run()Ljava/util/concurrent/Future;
+   L0
+    LINENUMBER 38 L0
+    ALOAD 0
+    GETFIELD com/example/KeepAliveThread.ex : Ljava/util/concurrent/ExecutorService;
+    NEW com/example/KeepAliveThread$1
+    DUP
+    ALOAD 0
+    INVOKESPECIAL com/example/KeepAliveThread$1.<init> (Lcom/example/KeepAliveThread;)V
+    INVOKEINTERFACE java/util/concurrent/ExecutorService.submit (Ljava/util/concurrent/Callable;)Ljava/util/concurrent/Future;
+    ARETURN
+   L1
+    LOCALVARIABLE this Lcom/example/KeepAliveThread; L0 L1 0
+    MAXSTACK = 4
+    MAXLOCALS = 1
+}
+
