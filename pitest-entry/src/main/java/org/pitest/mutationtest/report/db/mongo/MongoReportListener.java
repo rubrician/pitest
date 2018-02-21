@@ -4,6 +4,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.pitest.coverage.CoverageDatabase;
 import org.pitest.functional.Option;
 import org.pitest.mutationtest.ClassMutationResults;
@@ -22,6 +23,9 @@ import java.util.Properties;
 import java.util.logging.Logger;
 import java.util.Arrays;
 
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.eq;
+
 /**
  * Created by Talal Ahmed on 23/11/2017
  */
@@ -33,11 +37,13 @@ public class MongoReportListener implements MutationResultListener {
     public static final Integer MONGO_DEFAULT_PORT = 27017;
 
     public static final String DEFAULT_DB_NAME = "pitest";
-    public static final String DEFAULT_COLLECTION_NAME = "result";
+    public static final String DEFAULT_COLLECTION_NAME = "result-src";
+    public static final String DEFAULT_DC_COLLECTION_NAME = "result-dc";
 
     private final MongoClient mongo;
     private final MongoDatabase db;
     private final MongoCollection<Document> coll;
+    private final MongoCollection<Document> collDC;
 
     private final SourceLocator locator;
     private final MutationEngine engine;
@@ -50,13 +56,13 @@ public class MongoReportListener implements MutationResultListener {
     public MongoReportListener(ListenerArguments args) {
         LOG.info("Connecting to db...");
 
-        mongo = new MongoClient(MONGO_DEFAULT_HOST, MONGO_DEFAULT_PORT);
-        db = mongo.getDatabase(DEFAULT_DB_NAME);
-        coll = db.getCollection(DEFAULT_COLLECTION_NAME);
-
-        coverage = args.getCoverage();
-        engine = args.getEngine();
-        locator = args.getLocator();
+        this.mongo = new MongoClient(MONGO_DEFAULT_HOST, MONGO_DEFAULT_PORT);
+        this.db = mongo.getDatabase(DEFAULT_DB_NAME);
+        this.coll = db.getCollection(DEFAULT_COLLECTION_NAME);
+        this.collDC = db.getCollection(DEFAULT_DC_COLLECTION_NAME);
+        this.coverage = args.getCoverage();
+        this.engine = args.getEngine();
+        this.locator = args.getLocator();
     }
 
     @Override
@@ -75,32 +81,73 @@ public class MongoReportListener implements MutationResultListener {
         LOG.info("Handling Mutation Result...");
 
         Document document = new Document();
-        document.append("file", metaData.getFileName());
-        document.append("package", metaData.getPackageName());
-        document.append("mutatedClass", metaData.getMutatedClass().asJavaName());
-        document.append("content", getClassContent(metaData.getMutatedClass().asJavaName(), metaData.getFileName()));
 
-        List<Document> mutations = new ArrayList<Document>();
+        List<Document> mutations = new ArrayList<>();
+        List<String> decompiledSrc = null;
+        String project = "unknown";
 
-        for (final MutationResult mutation : metaData.getMutations()) {
-            Document mdoc = new Document();
-            mdoc.append("class", mutation.getDetails().getClassName().asJavaName());
-            mdoc.append("classLine", mutation.getDetails().getClassLine().getClassName() + ":" + mutation.getDetails().getClassLine().getLineNumber());
-            mdoc.append("method", mutation.getDetails().getMethod().name());
-            mdoc.append("line", mutation.getDetails().getLineNumber());
-            mdoc.append("description", mutation.getDetails().getDescription());
-            mdoc.append("status", mutation.getStatus().isDetected() ? "detected" : "undetected");
-            mdoc.append("statusDetail", mutation.getStatusDescription());
-            mdoc.append("killingTest", mutation.getKillingTestDescription());
-            mdoc.append("stacktrace", mutation.getKillingTestStacktrace().hasSome() ? mutation.getKillingTestStacktrace().value() : "none");
-            mdoc.append("testRuns", mutation.getNumberOfTestsRun());
-            mutations.add(mdoc);
+        for (final MutationResult mutationResult : metaData.getMutations()) {
+            if ("KILLED".equals(mutationResult.getStatusDescription())) {
+                int lineNumber = mutationResult.getDetails().getLineNumber();
+                String method = mutationResult.getDetails().getMethod().name();
+                String description = mutationResult.getDetails().getDescription();
+                String className = metaData.getMutatedClass().asJavaName();
+
+                Document doc = findDcDocument(className, lineNumber, method, description);
+                Document mutation = doc.get("mutation", Document.class);
+
+                decompiledSrc = doc.get("decompiledSrc", List.class);
+                project = doc.getString("project");
+
+                updateKilledMutations(mutation, mutationResult);
+                mutations.add(mutation);
+            }
         }
 
-        document.append("createdAt", System.currentTimeMillis());
-        document.append("mutators", engine.getMutatorNames());
+        addFileDetails(document, project, metaData);
+        document.append("decompiledSrc", decompiledSrc);
         document.append("mutations", mutations);
+        document.append("updatedAt", System.currentTimeMillis());
+        document.append("mutators", engine.getMutatorNames());
 
+        insertDocument(document);
+    }
+
+    private void addFileDetails(Document document, String project, ClassMutationResults metaData) {
+        document.append("project", project);
+        document.append("file", metaData.getFileName());
+        document.append("package", metaData.getPackageName());
+        document.append("className", metaData.getMutatedClass().asJavaName());
+        document.append("source", getClassContent(metaData.getMutatedClass().asJavaName(), metaData.getFileName()));
+    }
+
+    private void updateKilledMutations(Document doc, MutationResult result) {
+        doc.append("status", result.getStatusDescription());
+        doc.append("killingTest", result.getKillingTestDescription());
+        doc.append("stacktrace", result.getKillingTestStacktrace().hasSome() ? result.getKillingTestStacktrace().value() : "none");
+        doc.append("testRuns", result.getNumberOfTestsRun());
+    }
+
+    private Document findDcDocument(String className, int lineNumber, String method, String description) {
+        Bson query = and(
+                eq("className", className),
+                eq("mutation.line", lineNumber),
+                eq("mutation.method", method),
+                eq("mutation.description", description)
+        );
+        return collDC.find(query).first();
+    }
+
+    private Document findDocument(String className) {
+        Bson query = eq("className", className);
+        return coll.find(query).first();
+    }
+
+    private void updateDocument(Document document) {
+        coll.replaceOne(eq("_id", document.get("_id")), document);
+    }
+
+    private void insertDocument(Document document) {
         coll.insertOne(document);
     }
 

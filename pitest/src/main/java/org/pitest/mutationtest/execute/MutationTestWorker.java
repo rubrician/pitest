@@ -69,7 +69,7 @@ public class MutationTestWorker {
   }
 
   protected void run(final Collection<MutationDetails> range, final Reporter r,
-      final TimeOutDecoratedTestSource testSource) throws IOException {
+                     final TimeOutDecoratedTestSource testSource) throws IOException {
 
     for (final MutationDetails mutation : range) {
       if (DEBUG) {
@@ -149,6 +149,7 @@ public class MutationTestWorker {
         LOG.fine("replaced class with mutant in "
             + (System.currentTimeMillis() - t0) + " ms");
       }
+
       mutationDetected = doTestsDetectMutation(c, relevantTests);
     } else {
       LOG.warning("Mutation " + mutationId + " was not viable ");
@@ -207,7 +208,7 @@ public class MutationTestWorker {
   private MutationStatusTestPair createStatusTestPair(
       final CheckTestHasFailedResultListener listener) {
     if (listener.lastFailingTest().hasSome()) {
-      // TODO: use configuration to get stacktrace or not
+      // TODO: use configuration to for stacktrace on/off option
       /*return new MutationStatusTestPair(listener.getNumberOfTestsRun(),
               listener.status(), listener.lastFailingTest().value().getQualifiedName());*/
       return new MutationStatusTestPair(listener.getNumberOfTestsRun(),
@@ -223,7 +224,7 @@ public class MutationTestWorker {
     return Collections.<TestUnit> singletonList(new MultipleTestGroup(tests));
   }
 
-  public static String getStackTrace(final Throwable throwable) {
+  private static String getStackTrace(final Throwable throwable) {
     final StringWriter sw = new StringWriter();
     final PrintWriter pw = new PrintWriter(sw, true);
     throwable.printStackTrace(pw);

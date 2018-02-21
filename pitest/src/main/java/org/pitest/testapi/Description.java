@@ -101,5 +101,4 @@ public final class Description {
     return "Description [testClass=" + this.testClass + ", name=" + this.name
         + "]";
   }
-
 }

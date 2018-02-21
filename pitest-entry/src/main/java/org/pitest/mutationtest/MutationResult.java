@@ -32,10 +32,6 @@ public final class MutationResult {
     return this.details;
   }
 
-  public Option<String> getKillingTest() {
-    return this.status.getKillingTest();
-  }
-
   public DetectionStatus getStatus() {
     return this.status.getStatus();
   }
@@ -50,6 +46,10 @@ public final class MutationResult {
 
   public String getStatusDescription() {
     return getStatus().name();
+  }
+
+  public Option<String> getKillingTest() {
+    return this.status.getKillingTest();
   }
 
   public String getKillingTestDescription() {

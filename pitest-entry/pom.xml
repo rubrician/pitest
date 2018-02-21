@@ -106,7 +106,15 @@
 					</execution>
 				</executions>
 			</plugin>
-		</plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -133,8 +141,13 @@
 			<groupId>org.ow2.asm</groupId>
 			<artifactId>asm-util</artifactId>
 			<version>${asm.version}</version>
-		</dependency>		
-		
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.windup.decompiler</groupId>
+			<artifactId>decompiler-fernflower</artifactId>
+			<version>4.0.0.Beta4</version>
+		</dependency>
+
 		<!-- for the xstream history store. cannot used shaded version -->
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>

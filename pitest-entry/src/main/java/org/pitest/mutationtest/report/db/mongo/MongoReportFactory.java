@@ -19,6 +19,7 @@ public class MongoReportFactory implements MutationResultListenerFactory {
     public MutationResultListener getListener(Properties props, final ListenerArguments args) {
         LOG.info("MongoReportFactory props: " + props);
         LOG.info("MongoReportFactory args: " + args);
+
         return new MongoReportListener(props, args);
     }
 

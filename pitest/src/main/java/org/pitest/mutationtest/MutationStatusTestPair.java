@@ -34,7 +34,8 @@ public final class MutationStatusTestPair {
   }
 
   public MutationStatusTestPair(final int numberOfTestsRun,
-                                final DetectionStatus status, final String killingTest, final String killingTestStackTrace) {
+                                final DetectionStatus status, final String killingTest,
+                                final String killingTestStackTrace) {
     this.status = status;
     this.killingTest = Option.some(killingTest);
     this.numberOfTestsRun = numberOfTestsRun;
@@ -50,7 +51,7 @@ public final class MutationStatusTestPair {
   }
 
   public Option<String> getKillingTestStacktrace() {
-    return killingTestStacktrace;
+    return this.killingTestStacktrace;
   }
 
   public int getNumberOfTestsRun() {
